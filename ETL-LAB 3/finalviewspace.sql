@@ -1,4 +1,4 @@
-﻿/*
+/*
 ПРАКТИЧЕСКАЯ РАБОТА №3
 TechStore — логическая витрина продаж.
 
@@ -30,6 +30,10 @@ GO
 /* 
    Шаг 2. mart.vw_SalesByMonthCategory
    Grain: одна строка = один год + месяц + категория.
+-- 1) Аналитиеский вопрос: Какова динамика продаж (число заказов, проданные единицы, выручка и средний чек) в разрезе месяцев и категорий товаров?
+-- 2) Grain: одна строка = один год + один месяц + одна категория товаров.
+-- 3) Measures: OrdersCount, UnitsSold, Revenue, AvgRevenuePerOrder.
+-- 4) Dimensions: Year, Month, MonthName, Category.
  */
 
 CREATE OR ALTER VIEW mart.vw_SalesByMonthCategory
@@ -60,6 +64,10 @@ GO
 /* 
    Шаг 3. mart.vw_ProductPerformance
    Grain: одна строка = один товар.
+-- 1) Аналитический вопрос: Какие товары приносят наибольшую выручку, как часто их покупают и какова их средняя историческая цена продажи?
+-- 2) Grain: одна строка = один уникальный товар.
+-- 3) Measures: OrdersCount, UnitsSold, Revenue, AvgHistoricalUnitPrice.
+-- 4) Dimensions: ProductID, ProductName, Category.
  */
 
 CREATE OR ALTER VIEW mart.vw_ProductPerformance
@@ -86,6 +94,11 @@ GO
 /* 
    Шаг 4. mart.vw_CustomerValue
    Grain: одна строка = один клиент.
+
+-- 1) Аналитический вопрос: Кто из клиентов явяется наиболее ценным (генерация выручки, объемы покупок) и каков их средний чек?
+-- 2) Grain: одна строка = один уникальный клиент.
+-- 3) Measures: OrdersCount, UnitsPurchased, TotalSpent, AvgOrderValue.
+-- 4) Dimensions: CustomerID, FirstName, LastName, City.
  */
 
 CREATE OR ALTER VIEW mart.vw_CustomerValue
@@ -113,6 +126,11 @@ GO
 /* 
    Шаг 5. mart.vw_SalesByCity
    Grain: одна строка = один город клиента.
+
+-- 1) Аналитический вопрос: Как распределяются продажи, количество активных клиентов и средняя стоимость заказа по географическим регионам (городам)?
+-- 2) Grain: одна строка = один город.
+-- 3) Measures: CustomersCount, OrdersCount, UnitsSold, Revenue, AvgOrderValue.
+-- 4) Dimensions: City.
  */
 
 CREATE OR ALTER VIEW mart.vw_SalesByCity
